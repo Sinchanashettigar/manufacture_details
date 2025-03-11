@@ -1,0 +1,352 @@
+<!-- <mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="myForm" errorMessage="Name is required.">
+    <form class="example-form" [formGroup]="myForm">
+      <ng-template matStepLabel>Provide your key details</ng-template>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name :</mat-label>
+        <input matInput formControlName="firstName" />
+
+        <mat-error *ngIf="myForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('firstName')?.hasError('firstLetter')">
+          {{ myForm.get("firstName")?.getError("firstLetter") }}
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('firstName')?.hasError('invalidInput')">
+          {{ myForm.get("firstName")?.getError("invalidInput") }}
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('firstName')?.hasError('specialChars')">
+          {{ myForm.get("firstName")?.getError("specialChars") }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name :</mat-label>
+        <input matInput formControlName="lastName" />
+
+        <mat-error *ngIf="myForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('lastName')?.hasError('firstLetter')">
+          {{ myForm.get("lastName")?.getError("firstLetter") }}
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('lastName')?.hasError('invalidInput')">
+          {{ myForm.get("lastName")?.getError("invalidInput") }}
+        </mat-error>
+
+        <mat-error *ngIf="myForm.get('lastName')?.hasError('specialChars')">
+          {{ myForm.get("lastName")?.getError("specialChars") }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Date of Birth:</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dateOfBirth"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="myForm.get('dateOfBirth')?.hasError('required')">
+          Date of Birth is required
+        </mat-error>
+        <mat-error *ngIf="myForm.get('dateOfBirth')?.hasError('futureDate')">
+          {{ myForm.get("dateOfBirth")?.getError("futureDate") }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="myForm.get('gender')?.hasError('required')">
+          Please select gender
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Blood_group:</mat-label>
+        <mat-select formControlName="bloodgroup">
+          <mat-option value="A+">A+</mat-option>
+          <mat-option value="A-">A-</mat-option>
+          <mat-option value="B+">B+</mat-option>
+          <mat-option value="B-">B-</mat-option>
+          <mat-option value="O+">O+</mat-option>
+          <mat-option value="O-">0-</mat-option>
+          <mat-option value="AB+">AB+</mat-option>
+          <mat-option value="AB-">AB-</mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('bloodgroup')?.hasError('required')">
+          bloodgroup is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Marital Status:</mat-label>
+        <mat-select formControlName="maritalStatus">
+          <mat-option value="single">Single</mat-option>
+          <mat-option value="married">Married</mat-option>
+          <mat-option value="divorced">Divorced</mat-option>
+          <mat-option value="widowed">Widowed</mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('maritalStatus')?.hasError('required')">
+          maritalStatus is required
+        </mat-error>
+      </mat-form-field>
+
+
+      
+
+      
+      <mat-form-field>
+        <mat-label>Height & Weight</mat-label>
+        <input matInput placeholder="e.g., 170 cm, 65 kg" (input)="onHeightWeightChange($event)">
+      </mat-form-field>
+
+
+     
+      
+       
+      
+
+
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Email :</mat-label>
+        <input
+          matInput
+          placeholder="User@gmail.com"
+          formControlName="emailInput"
+        />
+
+        <mat-error *ngIf="myForm.get('emailInput')?.hasError('required')">
+          Email is required
+        </mat-error>
+
+        <mat-error
+          *ngIf="myForm.get('emailInput')?.hasError('invalidEmailFormat')"
+        >
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="myForm" errorMessage="Address is required.">
+    <form class="example-form" [formGroup]="myForm">
+      <ng-template matStepLabel>Provide your address.</ng-template>
+
+      <mat-form-field class="example-full-width">
+        <mat-label> Address:</mat-label>
+        <input matInput placeholder="" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label> Street:</mat-label>
+        <input matInput placeholder="" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label> Postal code:</mat-label>
+        <input matInput placeholder="" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Country:</mat-label>
+        <mat-select
+          formControlName="country"
+          (selectionChange)="onCountryChange($event.value)"
+        >
+          <mat-option
+            *ngFor="let country of countries"
+            [value]="country.isoCode"
+          >
+            {{ country.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('country')?.hasError('required')"
+          >Country is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>State</mat-label>
+        <mat-select
+          formControlName="state"
+          [disabled]="true"
+          (selectionChange)="onStateChange($event.value)"
+        >
+          <mat-option *ngFor="let state of states" [value]="state.isoCode">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="myForm.get('state')?.hasError('required')"
+          >State is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city" [disabled]="true">
+          <mat-option *ngFor="let city of cities" [value]="city.name">
+            {{ city.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('city')?.hasError('required')"
+          >City is required</mat-error
+        >
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="myForm" errorMessage="Medical history required.">
+    <form class="example-form" [formGroup]="myForm">
+      <ng-template matStepLabel>Medical History</ng-template>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Do you have a chronic illness? (Yes/No)</mat-label>
+        <input matInput formControlName="hasChronicIllness" />
+      </mat-form-field>
+      <div
+        *ngIf="myForm.get('hasChronicIllness')?.value?.toLowerCase() === 'yes'"
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>Please specify your chronic illness</mat-label>
+          <input matInput formControlName="chronicIllnessDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Do you have any allergies? (Yes/No)</mat-label>
+        <input matInput formControlName="hasAllergies" />
+      </mat-form-field>
+      <div *ngIf="myForm.get('hasAllergies')?.value?.toLowerCase() === 'yes'">
+        <mat-form-field class="example-full-width">
+          <mat-label>Please specify your Allergies</mat-label>
+          <input matInput formControlName="allergyDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Are you currently taking any medications?(Yes/No)</mat-label>
+        <input matInput formControlName="hasmedications" />
+      </mat-form-field>
+      <div *ngIf="myForm.get('hasmedications')?.value?.toLowerCase() === 'yes'">
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please list them</mat-label>
+          <input matInput formControlName="medicationsDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label
+          >Have you had any serious illnesses or infections?(Yes/No)</mat-label
+        >
+        <input matInput formControlName="hasillnesses" />
+      </mat-form-field>
+      <div *ngIf="myForm.get('hasillnesses')?.value?.toLowerCase() === 'yes'">
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="illnessesDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label
+          >Have you ever been diagnosed with a mental health
+          condition?(Yes/No)</mat-label
+        >
+        <input matInput formControlName="hasmentalhealth" />
+      </mat-form-field>
+      <div
+        *ngIf="myForm.get('hasmentalhealth')?.value?.toLowerCase() === 'yes'"
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="mentalhealthDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Have you ever had any surgeries(Yes/No)</mat-label>
+        <input matInput formControlName="hassurgeries" />
+      </mat-form-field>
+      <div *ngIf="myForm.get('hassurgeries')?.value?.toLowerCase() === 'yes'">
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="surgeriesDetails" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label
+          >Have you ever been hospitalized for any reason(Yes/No)</mat-label
+        >
+        <input matInput formControlName="hashospitalized" />
+      </mat-form-field>
+      <div
+        *ngIf="myForm.get('hashospitalized')?.value?.toLowerCase() === 'yes'"
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="hospitalizedDetais" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Do you have any other medical conditions or concerns that should be
+          noted?</mat-label
+        >
+        <input matInput formControlName="hasmedicalconditions" />
+      </mat-form-field>
+      <div
+        *ngIf="
+          myForm.get('hasmedicalconditions')?.value?.toLowerCase() === 'yes'
+        "
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="medicalconditionsDetails" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperDone>Done</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper> -->
+
+
+
+<!-- <h1>Welcome to my angular</h1> -->
+
+<nav>
+  <a routerLink="/manufacture">Manufacture</a>
+  <a routerLink="/patient">Patient</a>
+</nav>
+
+<router-outlet></router-outlet>

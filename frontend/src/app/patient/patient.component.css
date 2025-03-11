@@ -1,0 +1,51 @@
+mat-horizontal-stepper {
+    width: 100%;
+  padding: 20px; 
+    border-radius: 10px;
+  }
+  .mat-step-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1976d2;
+  }
+  mat-form-field {
+    width: 100%;
+    max-width: 200px; 
+    display: block;
+    margin-bottom: 16px; 
+ 
+  }
+  button[mat-button] {
+    margin-right: 10px;
+    color:black;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+ 
+  mat-error {
+    font-size: 14px;
+    color: red;
+  }
+  .phone-input-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+  .phone-input-container .mat-form-field {
+    flex: 1;
+    min-width: 10px; 
+  }
+  .phone-input-container .mat-form-field:first-child 
+  {
+    flex: 10px; 
+    max-width: 60px;
+   }
+
+
+
+
+  
+  
+ 
+
