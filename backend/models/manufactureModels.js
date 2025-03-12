@@ -31,8 +31,7 @@ const manufactureSchema = new mongoose.Schema({
       description: { type: String, required: true },
       dosage_instruction: { type: String, required: true },
     },
-    side_effects:[{
-      type:Array}],
+    side_effects:[{type:Array}],
     contraindications:[{type:Array}],
 });
 

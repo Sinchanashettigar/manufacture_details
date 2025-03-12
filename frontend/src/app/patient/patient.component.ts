@@ -109,6 +109,7 @@ export class PatientComponent {
     if (!control.value) return null;
 
     const today = new Date();
+   
     const selectedDate = new Date(control.value);
 
     return selectedDate > today

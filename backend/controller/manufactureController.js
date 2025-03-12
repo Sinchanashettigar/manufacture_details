@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const manufactureModels = require("../models/manufactureModels");
+const { validateManufactureData } = require("../services/validateManufacture");
 
 const insertManufactureDetails = async (req, res) => {
   try {
@@ -66,54 +67,59 @@ const insertManufactureDetails = async (req, res) => {
 
     console.log("Formatted Data:", manufactureData);
 
- 
+    const validationResult = validateManufactureData(manufactureData);
+
+    if(validationResult.isValid === false){
+       return res.status(200).json(validationResult);
+    }
+    console.log("Formatted Data:", manufactureData);
 
   
 
 
-    if (!manufactureData.vaccine_produced.vacc_name?.trim()) {
-      return res.status(400).json({ status: "Vaccine name is mandatory" });
-    }
-    if (!manufactureData.vaccine_produced.vacc_type?.trim()) {
-      return res.status(400).json({ status: "Vaccine type is mandatory" });
-    }
-    if (!manufactureData.target_age_group.age_group_name?.trim()) {
-      return res.status(400).json({ status: "Age group name is required" });
-    }
-    if (typeof manufactureData.target_age_group.minimum_age !== "number") {
-      return res.status(400).json({ status: "Enter a valid minimum age" });
-    }
-    if (typeof manufactureData.target_age_group.maximum_age !== "number") {
-      return res.status(400).json({ status: "Enter a valid maximum age" });
-    }
-    if (!manufactureData.contact_information.manufacture_name?.trim()) {
-      return res.status(400).json({ status: "Manufacture name is mandatory" });
-    }
-    if (!manufactureData.contact_information.contact_person_name?.trim()) {
-      return res
-        .status(400)
-        .json({ status: "Contact person name is mandatory" });
-    }
-    if (!manufactureData.contact_information.email?.trim()) {
-      return res.status(400).json({ status: "Email is required" });
-    }
-    if (!manufactureData.contact_information.phone_number?.trim()) {
-      return res.status(400).json({ status: "Phone number is required" });
-    }
-    if (!manufactureData.vaccine_detail.description?.trim()) {
-      return res.status(400).json({ status: "Description is required" });
-    }
-    if (!manufactureData.vaccine_detail.dosage_instruction?.trim()) {
-      return res
-        .status(400)
-        .json({ status: "Dosage instruction is required" });
-    }
+    // if (!manufactureData.vaccine_produced.vacc_name?.trim()) {
+    //   return res.status(400).json({ status: "Vaccine name is mandatory" });
+    // }
+    // if (!manufactureData.vaccine_produced.vacc_type?.trim()) {
+    //   return res.status(400).json({ status: "Vaccine type is mandatory" });
+    // }
+    // if (!manufactureData.target_age_group.age_group_name?.trim()) {
+    //   return res.status(400).json({ status: "Age group name is required" });
+    // }
+    // if (typeof manufactureData.target_age_group.minimum_age !== "string") {
+    //   return res.status(400).json({ status: "Enter a valid minimum age" });
+    // }
+    // if (typeof manufactureData.target_age_group.maximum_age !== "string") {
+    //   return res.status(400).json({ status: "Enter a valid maximum age" });
+    // }
+    // if (!manufactureData.contact_information.manufacture_name?.trim()) {
+    //   return res.status(400).json({ status: "Manufacture name is mandatory" });
+    // }
+    // if (!manufactureData.contact_information.contact_person_name?.trim()) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: "Contact person name is mandatory" });
+    // }
+    // if (!manufactureData.contact_information.email?.trim()) {
+    //   return res.status(400).json({ status: "Email is required" });
+    // }
+    // if (!manufactureData.contact_information.phone_number?.trim()) {
+    //   return res.status(400).json({ status: "Phone number is required" });
+    // }
+    // if (!manufactureData.vaccine_detail.description?.trim()) {
+    //   return res.status(400).json({ status: "Description is required" });
+    // }
+    // if (!manufactureData.vaccine_detail.dosage_instruction?.trim()) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: "Dosage instruction is required" });
+    // }
 
 
     
     
     const manufacture = await manufactureModels.create(manufactureData);
-    return res.status(201).json({ status: " Added sucessfully", manufacture });
+    return res.status(201).json({ status: " Added sucessfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ status: "Internal Server Error" });
