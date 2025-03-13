@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import * as countryCodes from 'country-codes-list';
 import { APIService } from '../api.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-manufacture',
@@ -23,10 +24,16 @@ export class ManufactureComponent implements OnInit {
     countryCallingCode: string;
   }[] = [];
 
-  constructor(private fb: FormBuilder, private apiService: APIService) {}
+
+  
+
+  constructor(private fb: FormBuilder, private apiService: APIService,private _snackBar: MatSnackBar) {}
+
   ngOnInit(): void {
     this.initializeForm();
     this.loadCountryCodes();
+    
+
   }
 
   initializeForm() {
@@ -62,7 +69,16 @@ export class ManufactureComponent implements OnInit {
   onSubmit() {
     console.log('Form submitted!', this.vaccineForm.value);
     this.apiService.postData1(this.vaccineForm.value).subscribe((response) => {
-      console.log('Backend data', response);
+      if(response.status === "auth-01"){
+        this._snackBar.open(" ✔ submitted sucessfully ", "Done", {
+          duration: 5000,
+        });
+        console.log("Added sucessfully");
+        }else{
+          console.log("Failed");
+          
+        }
+
     });
   }
 

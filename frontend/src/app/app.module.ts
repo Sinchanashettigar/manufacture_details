@@ -14,12 +14,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ManufactureComponent } from './manufacture/manufacture.component';
 import { PatientComponent } from './patient/patient.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 ManufactureComponent,
-    PatientComponent
+    PatientComponent,
+    SnackbarComponent
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +35,7 @@ ManufactureComponent,
    MatButtonModule,
    MatSelectModule,
    MatInputModule,
-   MatFormFieldModule
+   MatFormFieldModule,
    
   ],
   providers: [],

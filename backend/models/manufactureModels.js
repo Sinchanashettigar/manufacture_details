@@ -13,8 +13,8 @@ const manufactureSchema = new mongoose.Schema({
   },
   target_age_group: {
     age_group_name: { type: String, required: true },
-    minimum_age: { type: String, required: true },
-    maximum_age: { type: String, required: true },
+    minimum_age: { type: Number, required: true },
+    maximum_age: { type: Number, required: true },
   },
   contact_information: {
     manufacture_name: { type: String, required: true },

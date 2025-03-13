@@ -2,160 +2,193 @@
   <mat-step [stepControl]="myForm" errorMessage="Name is required.">
     <form class="example-form" [formGroup]="myForm">
       <ng-template matStepLabel>Provide your key details</ng-template>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>First Name :</mat-label>
+          <input matInput formControlName="first_name" />
 
-      <mat-form-field class="example-full-width">
-        <mat-label>First Name :</mat-label>
-        <input matInput formControlName="first_name" />
+          <mat-error *ngIf="myForm.get('first_name')?.hasError('required')">
+            First Name is required
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('first_name')?.hasError('required')">
-          First Name is required
-        </mat-error>
+          <mat-error *ngIf="myForm.get('first_name')?.hasError('firstLetter')">
+            {{ myForm.get("first_name")?.getError("firstLetter") }}
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('first_name')?.hasError('firstLetter')">
-          {{ myForm.get("first_name")?.getError("firstLetter") }}
-        </mat-error>
+          <mat-error *ngIf="myForm.get('first_name')?.hasError('invalidInput')">
+            {{ myForm.get("first_name")?.getError("invalidInput") }}
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('first_name')?.hasError('invalidInput')">
-          {{ myForm.get("first_name")?.getError("invalidInput") }}
-        </mat-error>
+          <mat-error *ngIf="myForm.get('first_name')?.hasError('specialChars')">
+            {{ myForm.get("first_name")?.getError("specialChars") }}
+          </mat-error>
+        </mat-form-field>
 
-        <mat-error *ngIf="myForm.get('first_name')?.hasError('specialChars')">
-          {{ myForm.get("first_name")?.getError("specialChars") }}
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name :</mat-label>
+          <input matInput formControlName="last_name" />
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Last Name :</mat-label>
-        <input matInput formControlName="last_name" />
+          <mat-error *ngIf="myForm.get('last_name')?.hasError('required')">
+            Last Name is required
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('last_name')?.hasError('required')">
-          Last Name is required
-        </mat-error>
+          <mat-error *ngIf="myForm.get('last_name')?.hasError('firstLetter')">
+            {{ myForm.get("last_name")?.getError("firstLetter") }}
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('last_name')?.hasError('firstLetter')">
-          {{ myForm.get("last_name")?.getError("firstLetter") }}
-        </mat-error>
+          <mat-error *ngIf="myForm.get('last_name')?.hasError('invalidInput')">
+            {{ myForm.get("last_name")?.getError("invalidInput") }}
+          </mat-error>
 
-        <mat-error *ngIf="myForm.get('last_name')?.hasError('invalidInput')">
-          {{ myForm.get("last_name")?.getError("invalidInput") }}
-        </mat-error>
+          <mat-error *ngIf="myForm.get('last_name')?.hasError('specialChars')">
+            {{ myForm.get("last_name")?.getError("specialChars") }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Date Of Birth:</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="dob" />
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+        
+          <mat-error *ngIf="myForm.get('dob')?.hasError('required')">
+            Date of Birth is required
+          </mat-error>
+          <mat-error *ngIf="myForm.get('dob')?.hasError('futureDate')">
+            {{ myForm.get("dob")?.getError("futureDate") }}
+          </mat-error>
+        </mat-form-field>
+        
+      </div>
+     
 
-        <mat-error *ngIf="myForm.get('last_name')?.hasError('specialChars')">
-          {{ myForm.get("last_name")?.getError("specialChars") }}
-        </mat-error>
-      </mat-form-field>
+      <div class ="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Date of Birth:</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dob" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="myForm.get('gender')?.hasError('required')">
+            Please select gender
+          </mat-error>
+        </mat-form-field>
+        
 
-        <mat-error *ngIf="myForm.get('dob')?.hasError('required')">
-          Date of Birth is required
-        </mat-error>
-        <mat-error *ngIf="myForm.get('dob')?.hasError('futureDate')">
-          {{ myForm.get("dateOfBirth")?.getError("futureDate") }}
-        </mat-error>
-      </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="gender">
-          <mat-option value="Male">Male</mat-option>
-          <mat-option value="Female">Female</mat-option>
-          <mat-option value="Other">Other</mat-option>
-        </mat-select>
 
-        <mat-error *ngIf="myForm.get('gender')?.hasError('required')">
-          Please select gender
-        </mat-error>
-      </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Blood_group:</mat-label>
-        <mat-select formControlName="bloodgroup">
-          <mat-option value="A+">A+</mat-option>
-          <mat-option value="A-">A-</mat-option>
-          <mat-option value="B+">B+</mat-option>
-          <mat-option value="B-">B-</mat-option>
-          <mat-option value="O+">O+</mat-option>
-          <mat-option value="O-">O-</mat-option>
-          <mat-option value="AB+">AB+</mat-option>
-          <mat-option value="AB-">AB-</mat-option>
-        </mat-select>
-        <mat-error *ngIf="myForm.get('bloodgroup')?.hasError('required')">
-          bloodgroup is required
-        </mat-error>
-      </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <mat-label>Blood_group:</mat-label>
+          <mat-select formControlName="bloodgroup">
+            <mat-option value="A+">A+</mat-option>
+            <mat-option value="A-">A-</mat-option>
+            <mat-option value="B+">B+</mat-option>
+            <mat-option value="B-">B-</mat-option>
+            <mat-option value="O+">O+</mat-option>
+            <mat-option value="O-">O-</mat-option>
+            <mat-option value="AB+">AB+</mat-option>
+            <mat-option value="AB-">AB-</mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.get('bloodgroup')?.hasError('required')">
+            bloodgroup is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>ID :</mat-label>
-        <input matInput formControlName="id" />
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>ID :</mat-label>
+          <input matInput formControlName="id" />
+        </mat-form-field>
+      </div>
+    
 
-      <mat-form-field>
-        <mat-label>Height & Weight</mat-label>
-        <input
-          matInput
-          placeholder="e.g., 170 cm, 65 kg"
-          (input)="onHeightWeightChange($event)"
-        />
-      </mat-form-field>
+
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Height</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="e.g., 170 cm"
+      (input)="onHeightChange($event)"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Weight</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="e.g., 65 kg"
+      (input)="onWeightChange($event)"
+    />
+  </mat-form-field>
+       
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Email :</mat-label>
+          <input
+            matInput
+            placeholder="User@gmail.com"
+            formControlName="email"
+          />
+
+          <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+
+          <mat-error
+            *ngIf="myForm.get('email')?.hasError('invalidEmailFormat')"
+          >
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+      
 
       <div class="phone-input-container">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="full-width-field">
           <mat-select formControlName="countryCode">
             <mat-option
               *ngFor="let country of myCountryCodesObject"
               [value]="'+' + country.countryCallingCode"
             >
-            (+{{ country.countryCallingCode }})
+              (+{{ country.countryCallingCode }})
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Phone Number</mat-label>
-          <input
-            matInput
-            type="tel"
-            formControlName="phone_number"
-            maxlength="10"
-            placeholder="9876542310"
-          />
-          <mat-error *ngIf="myForm.get('phone_number')?.hasError('required')">
-            Phone number is required
-          </mat-error>
-  
-          <mat-error
-            *ngIf="myForm.get('phone_number')?.hasError('invalidCharacters')"
-          >
-            {{ myForm.get("phone_number")?.getError("invalidCharacters") }}
-          </mat-error>
-  
-          <mat-error
-            *ngIf="myForm.get('phone_number')?.hasError('invalidLength')"
-          >
-            {{ myForm.get("phone_number")?.getError("invalidLength") }}
-          </mat-error>
-        </mat-form-field>
+
+        <div class="phone-number-wrapper">
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              type="tel"
+              formControlName="phone_number"
+              maxlength="10"
+              placeholder="9876542310"
+            />
+            <mat-error *ngIf="myForm.get('phone_number')?.hasError('required')">
+              Phone number is required
+            </mat-error>
+
+            <mat-error
+              *ngIf="myForm.get('phone_number')?.hasError('invalidCharacters')"
+            >
+              {{ myForm.get("phone_number")?.getError("invalidCharacters") }}
+            </mat-error>
+
+            <mat-error
+              *ngIf="myForm.get('phone_number')?.hasError('invalidLength')"
+            >
+              {{ myForm.get("phone_number")?.getError("invalidLength") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-     
-
-
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Email :</mat-label>
-        <input matInput placeholder="User@gmail.com" formControlName="email" />
-
-        <mat-error *ngIf="myForm.get('email')?.hasError('required')">
-          Email is required
-        </mat-error>
-
-        <mat-error *ngIf="myForm.get('email')?.hasError('invalidEmailFormat')">
-          Please enter a valid email address
-        </mat-error>
-      </mat-form-field>
+      </div>
 
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -167,66 +200,78 @@
     <form class="example-form" [formGroup]="myForm">
       <ng-template matStepLabel>Provide your address.</ng-template>
 
-      <!-- <mat-form-field class="example-full-width">
-        <mat-label> Address:</mat-label>
-        <input matInput placeholder="" />
-      </mat-form-field> -->
+      <div class="form-row">
 
-      <mat-form-field class="example-full-width">
-        <mat-label> Street:</mat-label>
-        <input matInput formControlName="street" />      
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label> Address:</mat-label>
+          <input matInput formControlName="Address" />
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label> Postal code:</mat-label>
-        <input matInput formControlName="postal_code" />      
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label> Street:</mat-label>
+          <input matInput formControlName="street"   />
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Country:</mat-label>
-        <mat-select
-          formControlName="country"
-          (selectionChange)="onCountryChange($event.value)"
-        >
-          <mat-option
-            *ngFor="let country of countries"
-            [value]="country.isoCode"
+        <mat-form-field class="example-full-width">
+          <mat-label> Postal code:</mat-label>
+          <input matInput formControlName="postal_code" />
+        </mat-form-field>
+        </div>
+        <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Country:</mat-label>
+          <mat-select
+            formControlName="country"
+            (selectionChange)="onCountryChange($event.value)"
           >
-            {{ country.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="myForm.get('country')?.hasError('required')"
-          >Country is required</mat-error
-        >
-      </mat-form-field>
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.isoCode"
+            >
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.get('country')?.hasError('required')"
+            >Country is required</mat-error
+          >
+        </mat-form-field>
+      
 
-      <mat-form-field class="example-full-width">
-        <mat-label>State</mat-label>
-        <mat-select
-          formControlName="state"
-          (selectionChange)="onStateChange($event.value)"
-        >
-          <mat-option *ngFor="let state of states" [value]="state.isoCode">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
+   
+        <mat-form-field class="example-full-width">
+          <mat-label>State</mat-label>
+          <mat-select
+            formControlName="state"
+            (selectionChange)="onStateChange($event.value)"
+          >
+            <mat-option *ngFor="let state of states" [value]="state.isoCode">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
 
-        <mat-error *ngIf="myForm.get('state')?.hasError('required')"
-          >State is required</mat-error
-        >
-      </mat-form-field>
+          <mat-error *ngIf="myForm.get('state')?.hasError('required')"
+            >State is required</mat-error
+          >
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>City</mat-label>
-        <mat-select formControlName="city">
-          <mat-option *ngFor="let city of cities" [value]="city.name">
-            {{ city.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="myForm.get('city')?.hasError('required')"
-          >City is required</mat-error
-        >
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>City</mat-label>
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let city of cities" [value]="city.name">
+              {{ city.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.get('city')?.hasError('required')"
+            >City is required</mat-error
+          >
+        </mat-form-field>
+      </div>  
+      
+      
+     
+      
+
+
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -237,7 +282,8 @@
   <mat-step [stepControl]="myForm" errorMessage="Medical history required.">
     <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <ng-template matStepLabel>Medical History</ng-template>
-
+     
+      <div class="form-row">
       <mat-form-field class="example-full-width">
         <mat-label>Do you have a chronic illness? (Yes/No)</mat-label>
         <input matInput formControlName="hasChronicIllness" />
@@ -272,7 +318,10 @@
           <input matInput formControlName="medicationsDetails" />
         </mat-form-field>
       </div>
+</div>
 
+
+<div class="form-row">
       <mat-form-field class="example-full-width">
         <mat-label
           >Have you had any serious illnesses or infections?(Yes/No)</mat-label
@@ -288,13 +337,13 @@
 
       <mat-form-field class="example-full-width">
         <mat-label
-          >Have you ever been diagnosed with a mental health
-          condition?(Yes/No)</mat-label
+          >Do you have any physical disabilities
+         (Yes/No)</mat-label
         >
-        <input matInput formControlName="hasmentalhealth" />
+        <input matInput formControlName="hasPhysicalDisabilities" />
       </mat-form-field>
       <div
-        *ngIf="myForm.get('hasmentalhealth')?.value?.toLowerCase() === 'yes'"
+        *ngIf="myForm.get('hasPhysicalDisabilities')?.value?.toLowerCase() === 'yes'"
       >
         <mat-form-field class="example-full-width">
           <mat-label>If yes, please specify</mat-label>
@@ -327,11 +376,25 @@
           <input matInput formControlName="hospitalizedDetais" />
         </mat-form-field>
       </div>
+      
 
       <mat-form-field class="example-full-width">
+        <mat-label>Do you have any dietary restrictions ? (Yes/No)</mat-label>
+        <input matInput formControlName="hasDietaryRestrictions" />
+      </mat-form-field>
+      <div *ngIf="myForm.get('hasDietaryRestrictions')?.value?.toLowerCase() === 'yes'">
+        <mat-form-field class="example-full-width">
+          <mat-label>If yes, please specify</mat-label>
+          <input matInput formControlName="dietaryRestrictionsDetails" />
+        </mat-form-field>
+      </div>
+      
+      
+
+      
+      <mat-form-field class="example-full-width">
         <mat-label
-          >Do you have any other medical conditions or concerns that should be
-          noted?</mat-label
+          >Do you have any other medical concerns ?(Yes/No)</mat-label
         >
         <input matInput formControlName="hasmedicalconditions" />
       </mat-form-field>
@@ -344,6 +407,7 @@
           <mat-label>If yes, please specify</mat-label>
           <input matInput formControlName="medicalconditionsDetails" />
         </mat-form-field>
+      </div>
       </div>
 
       <div>

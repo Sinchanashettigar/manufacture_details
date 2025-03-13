@@ -59,7 +59,7 @@ const validatePatientData = (data) => {
   if (!data.bloodgroup) {
     errors.push("Blood group is required");
   }
-// if(!data.address) errors.push("Address is required")
+
   if (!data.address.street) errors.push("Street is required");
   if (!data.address.city) errors.push("City is required");
   if (!data.address.state) errors.push("State is required");

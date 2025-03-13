@@ -56,6 +56,11 @@ const validateManufactureData = (data) => {
 
   if (!data.target_age_group.minimum_age) {
     errors.push("Minimum age is required");
+
+  }
+  if (!data.target_age_group.maximum_age) {
+    errors.push("maximum age age is required");
+    
   }
 
   if (!data.contact_information.manufacture_name) {

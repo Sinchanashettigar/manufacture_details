@@ -119,10 +119,10 @@ const insertManufactureDetails = async (req, res) => {
     
     
     const manufacture = await manufactureModels.create(manufactureData);
-    return res.status(201).json({ status: " Added sucessfully" });
+    return res.status(201).json({ status: "auth-01" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ status: "Internal Server Error" });
+    res.status(500).json({ status: "author-02" });
   }
 };
 

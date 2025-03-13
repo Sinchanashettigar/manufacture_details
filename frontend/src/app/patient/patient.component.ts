@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewEncapsulation } from '@angular/core';
 import {
   AbstractControl,
   ValidationErrors,
@@ -10,11 +10,12 @@ import {
 import * as countryCodes from 'country-codes-list';
 import { Country, State, City } from 'country-state-city';
 import { APIService } from '../api.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar'
 @Component({
   selector: 'app-root',
   templateUrl: './patient.component.html',
   styleUrls: ['./patient.component.css'],
+  encapsulation: ViewEncapsulation.None, 
 })
 export class PatientComponent {
   title = 'demo';
@@ -22,7 +23,9 @@ export class PatientComponent {
   myForm: FormGroup;
 
   isLinear = true;
-
+  
+  height: string = '';
+  weight: number = 0;
   myCountryCodesObject: {
     countryCode: string;
     countryNameEn: string;
@@ -36,7 +39,7 @@ export class PatientComponent {
   selectedState: string | null = null;
   stateSelectedWithoutCountry: boolean = false;
 
-  constructor(private fb: FormBuilder, private apiService: APIService) {}
+  constructor(private fb: FormBuilder, private apiService: APIService,private _snackBar: MatSnackBar) {}
   ngOnInit() {
     this.initializeForm();
     this.loadCountryCodes();
@@ -56,7 +59,7 @@ export class PatientComponent {
       email: ['', [Validators.required, this.emailValidator]],
 
       bloodgroup: ['', [Validators.required]],
-
+      Address:['',[Validators.required]],
       street: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -70,7 +73,7 @@ export class PatientComponent {
       medicationsDetails: [''],
       hasillnesses: [''],
       illnessesDetails: [''],
-      hasmentalhealth: [''],
+      hasPhysicalDisabilities: [''],
       mentalhealthDetails: [''],
       hassurgeries: [''],
       surgeriesDetails: [''],
@@ -78,15 +81,31 @@ export class PatientComponent {
       hospitalizedDetais: [''],
       hasmedicalconditions: [''],
       medicalconditionsDetails: [''],
+      hasDietaryRestrictions:['']
     });
   }
-
   onSubmit() {
     console.log('Form submitted!', this.myForm.value);
-    this.apiService.postData(this.myForm.value).subscribe((response) => {
-      console.log('Backend data', response);
+  
+    this.apiService.postData(this.myForm.value).subscribe({
+      next: (response) => {
+        console.log('API Response:', response); // Log full response
+        if (response?.status === 'auth-01') {
+          this._snackBar.open('✔ Submitted successfully', 'Done', { duration: 5000 });
+          console.log('Added successfully');
+        } else {
+          this._snackBar.open('Submission failed. Please try again.', 'OK', { duration: 5000 });
+          console.log('Failed');
+        }
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this._snackBar.open('Error occurred. Please try again.', 'OK', { duration: 5000 });
+      }
     });
   }
+  
+
 
   customValidator(control: AbstractControl): { [key: string]: any } | null {
     const value = control.value;
@@ -214,15 +233,30 @@ export class PatientComponent {
     this.myForm.get('city')?.enable();
     this.myForm.get('city')?.reset();
   }
-  onHeightWeightChange(event: any) {
-    const value = event.target.value;
-    const regex = /(\d+)\s*cm.*?(\d+)\s*kg/;
-    const match = value.match(regex);
-    if (match) {
-      this.myForm.patchValue({
-        height: match[1],
-        weight: match[2],
-      });
-    }
+  // onHeightWeightChange(event: any) {
+  //   const value = event.target.value;
+  //   const regex = /(\d+)\s*cm.*?(\d+)\s*kg/;
+  //   const match = value.match(regex);
+  //   if (match) {
+  //     this.myForm.patchValue({
+  //       height: match[1],
+  //       weight: match[2],
+  //     });
+  //   }
+  // }
+  onHeightChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.height =target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    console.log('Height:', this.height);
   }
+  
+  onWeightChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const numericValue = target.value.replace(/\D/g, ''); // Ensure only numeric values
+  
+    this.weight = numericValue ? Number(numericValue) : 0; // Convert to number
+    console.log('Weight:', this.weight);
+  }
+  
+  
 }

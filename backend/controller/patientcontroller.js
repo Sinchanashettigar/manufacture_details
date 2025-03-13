@@ -22,23 +22,8 @@ const insertPatientDetails = async (req, res) => {
       postal_code,
       country,
     } = req.body;
-
-  
-    // if (!first_name) {
-    //   return res.status(400).json({ error: "first_name is required" });
-    // }
-
-    // if (!last_name) {
-    //   return res.status(300).json({ status: "last_name is required" });
-    // }
-    // if (!id) {
-    //   return res.status(300).json({ status: "id is required" });
-    // }
-    // if (!dob) {
-    //   return res.status(300).json({ status: "date of birth is required" });
-    // }
-
-    const patientData = {
+    
+ const patientData = {
       first_name,
       last_name,
       gender,
@@ -66,10 +51,10 @@ const insertPatientDetails = async (req, res) => {
     console.log("Formatted Data:", patientData);
 
     const patient = await patientModels.create(patientData);
-    res.status(200).json({ status: "added sucessfully" });
+    res.status(200).json({ status: "auth-01"  });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ status: "Internal Server Error" });
+    res.status(500).json({ status: "auth-02" });
   }
 };
 

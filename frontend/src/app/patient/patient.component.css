@@ -1,44 +1,113 @@
- mat-horizontal-stepper {
-     width: 70%; 
-  padding: 20px; 
+
+
+   mat-horizontal-stepper {
+    width: 80%;
+    padding: 20px;
     border-radius: 10px;
   }
-  /* .mat-step {
-    font-size: 1px;
-    font-weight: bold; 
-    color: #d27c19;
-  } */
-  mat-form-field {
-    width: 100%;
-    max-width: 200px; 
-    display: block;
-    margin-bottom: 16px; 
- 
+  
+  .mat-step-label {
+    font-size: 14px;
+    font-weight: bold;
   }
-  button[mat-button] {
+  
+   mat-form-field,
+   .mat-form-field-wrapper {
+    width: 70%;
+  }
+  
+   input.mat-input-element:focus {
+    background-color: none;
+    box-shadow: none;
+  }
+  
+   .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    width: 120%;
+  }
+  
+  .form-row .mat-form-field {
+    flex: 1;
+    min-width: calc(33.33% - 10px);
+    max-width: 33.33%;
+  }
+  
+  
+  
+   .mat-datepicker-toggle {
+    color: hsla(104, 100%, 3%, 0.933);
+  }
+  
+ .mat-select-arrow {
+    color: hsla(104, 100%, 3%, 0.933);
+  }
+  
+   button[mat-button] {
     margin-right: 10px;
-    color:black;
+    color: black;
     padding: 10px 20px;
     border-radius: 5px;
   }
- 
-  mat-error {
+  
+   mat-error {
     font-size: 14px;
     color: red;
   }
-  .phone-input-container {
+  
+   input.mat-input-element::placeholder {
+    color: hsla(184, 6%, 53%, 0.719);
+    font-style: italic;
+  }
+  
+  input.mat-input-element {
+    font-size: 15px;
+    font-weight: 500;
+    color: light rgba(0, 0, 0, 0.082);
+  
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+   .phone-input-container {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 2px !important; 
     width: 100%;
   }
-  .phone-input-container .mat-form-field {
-    flex: 1;
-    min-width: 10px; 
+
+  
+   .phone-number-wrapper {
+    display: flex;
+    align-items: center;
+    width: 300%;
+    border-radius: 5px;
+    padding: 8px;
   }
-  .phone-input-container .mat-form-field:first-child 
-  {
-    flex: 10px; 
-    max-width: 60px;
-   }
+
+  
+  
+  
+  
+  
+     
+
+
+
+     
+
+
  
+  
+    
+    .phone-input-container {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .phone-number-wrapper {
+      flex: 1;
+    }
+    

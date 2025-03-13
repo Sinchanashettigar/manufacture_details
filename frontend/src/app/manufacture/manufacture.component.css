@@ -1,4 +1,4 @@
-mat-horizontal-stepper {
+/* mat-horizontal-stepper {
     width: 100%;
   padding: 20px; 
     border-radius: 10px;
@@ -44,4 +44,100 @@ mat-horizontal-stepper {
   {
     flex: 10px; 
     max-width: 60px;
-   }
+   } */
+
+::ng-deep mat-horizontal-stepper {
+  width: 80%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+::ng-deep .mat-step-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+::ng-deep mat-form-field,
+::ng-deep .mat-form-field-wrapper {
+  width: 50%;
+}
+
+::ng-deep input.mat-input-element:focus {
+  background-color: none;
+  box-shadow: none;
+}
+
+::ng-deep .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  width: 120%;
+}
+
+::ng-deep .form-row .mat-form-field {
+  flex: 1;
+  min-width: calc(33.33% - 10px);
+  max-width: 33.33%;
+}
+
+
+
+::ng-deep .mat-datepicker-toggle {
+  color: hsla(104, 100%, 3%, 0.933);
+}
+
+::ng-deep .mat-select-arrow {
+  color: hsla(104, 100%, 3%, 0.933);
+}
+
+::ng-deep button[mat-button] {
+  margin-right: 10px;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+::ng-deep mat-error {
+  font-size: 14px;
+  color: red;
+}
+
+::ng-deep input.mat-input-element::placeholder {
+  color: hsla(184, 6%, 53%, 0.719);
+  font-style: italic;
+}
+
+::ng-deep input.mat-input-element {
+  font-size: 15px;
+  font-weight: 500;
+  color: light rgba(0, 0, 0, 0.082);
+
+  font-family: "Poppins", sans-serif;
+}
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 30%;
+}
+
+.full-width-field {
+  min-width: 70px;
+  max-width: 100px;
+
+}
+
+.phone-number-wrapper {
+  display: flex;
+  align-items: center;
+  width: 300%;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+
+
+
+
+

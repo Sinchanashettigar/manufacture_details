@@ -2,133 +2,144 @@
   <mat-step [stepControl]="vaccineForm" errorMessage="Name is required.">
     <form class="example-form" [formGroup]="vaccineForm">
       <ng-template matStepLabel>Vaccine Produced</ng-template>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Vaccine Name</mat-label>
+          <input matInput formControlName="vacc_name" />
+          <mat-error *ngIf="vaccineForm.get('vacc_name')?.hasError('required')">
+            Vaccine name is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Vaccine Name</mat-label>
-        <input matInput formControlName="vacc_name" />
-        <mat-error *ngIf="vaccineForm.get('vacc_name')?.hasError('required')">
-          Vaccine name is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Vaccine type</mat-label>
+          <input matInput formControlName="vacc_type" />
+          <mat-error *ngIf="vaccineForm.get('vacc_type')?.hasError('required')">
+            Vaccine type is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Vaccine type</mat-label>
-        <input matInput formControlName="vacc_type" />
-        <mat-error *ngIf="vaccineForm.get('vacc_type')?.hasError('required')">
-          Vaccine type is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Approval Status</mat-label>
-        <mat-select formControlName="approval_status">
-          <mat-option value="Preclinical">Preclinical</mat-option>
-          <mat-option value="Phase 1 Trial">Phase 1 Trial</mat-option>
-          <mat-option value="Phase 2 Trial">Phase 2 Trial</mat-option>
-          <mat-option value="Phase 3 Trial">Phase 3 Trial</mat-option>
-          <mat-option value="Under Review">Under Review</mat-option>
-          <mat-option value="Approved">Approved</mat-option>
-          <mat-option value="Emergency Use Authorization (EUA)"
-            >Emergency Use Authorization (EUA)</mat-option
+        <mat-form-field class="example-full-width">
+          <mat-label>Approval Status</mat-label>
+          <mat-select formControlName="approval_status">
+            <mat-option value="Preclinical">Preclinical</mat-option>
+            <mat-option value="Phase 1 Trial">Phase 1 Trial</mat-option>
+            <mat-option value="Phase 2 Trial">Phase 2 Trial</mat-option>
+            <mat-option value="Phase 3 Trial">Phase 3 Trial</mat-option>
+            <mat-option value="Under Review">Under Review</mat-option>
+            <mat-option value="Approved">Approved</mat-option>
+            <mat-option value="Emergency Use Authorization (EUA)"
+              >Emergency Use Authorization (EUA)</mat-option
+            >
+            <mat-option value="Rejected">Rejected</mat-option>
+            <mat-option value="Withdrawn">Withdrawn</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="vaccineForm.get('approval_status')?.hasError('required')"
           >
-          <mat-option value="Rejected">Rejected</mat-option>
-          <mat-option value="Withdrawn">Withdrawn</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="vaccineForm.get('approval_status')?.hasError('required')"
-        >
-          Approval Status is required
-        </mat-error>
-      </mat-form-field>
+            Approval Status is required
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Production Date:</mat-label>
-        <input
-          matInput
-          [matDatepicker]="productionPicker"
-          formControlName="production_date"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="productionPicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #productionPicker></mat-datepicker>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Production Date:</mat-label>
+          <input
+            matInput
+            [matDatepicker]="productionPicker"
+            formControlName="production_date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="productionPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #productionPicker></mat-datepicker>
 
-        <mat-error
-          *ngIf="vaccineForm.get('production_date')?.hasError('required')"
-        >
-          Production Date is required
-        </mat-error>
-        <mat-error
-          *ngIf="vaccineForm.get('production_date')?.hasError('futureDate')"
-        >
-          Production Date cannot be in the future.
-        </mat-error>
-      </mat-form-field>
+          <mat-error
+            *ngIf="vaccineForm.get('production_date')?.hasError('required')"
+          >
+            Production Date is required
+          </mat-error>
+          <mat-error
+            *ngIf="vaccineForm.get('production_date')?.hasError('futureDate')"
+          >
+            Production Date cannot be in the future.
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Expiry Date:</mat-label>
-        <input
-          matInput
-          [matDatepicker]="expiryPicker"
-          formControlName="expiry_date"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="expiryPicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #expiryPicker></mat-datepicker>
+        <mat-form-field class="example-full-width">
+          <mat-label>Expiry Date:</mat-label>
+          <input
+            matInput
+            [matDatepicker]="expiryPicker"
+            formControlName="expiry_date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="expiryPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #expiryPicker></mat-datepicker>
 
-        <mat-error *ngIf="vaccineForm.get('expiry_date')?.hasError('required')">
-          Expiry Date is required
-        </mat-error>
-        <mat-error *ngIf="vaccineForm.get('expiry_date')?.hasError('pastDate')">
-          Expiry Date cannot be in the past.
-        </mat-error>
-      </mat-form-field>
+          <mat-error
+            *ngIf="vaccineForm.get('expiry_date')?.hasError('required')"
+          >
+            Expiry Date is required
+          </mat-error>
+          <mat-error
+            *ngIf="vaccineForm.get('expiry_date')?.hasError('pastDate')"
+          >
+            Expiry Date cannot be in the past.
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Vaccine Batch</mat-label>
-        <input matInput formControlName="vacc_batch" />
-        <mat-error
-          *ngIf="vaccineForm.get('vacc_batch')?.hasError('required')"
-        >
-          Vaccine Batch is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Vaccine Batch</mat-label>
+          <input matInput formControlName="vacc_batch" />
+          <mat-error
+            *ngIf="vaccineForm.get('vacc_batch')?.hasError('required')"
+          >
+            Vaccine Batch is required
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Dosage Before</mat-label>
-        <input matInput formControlName="dosage_before" min="0" />
-        <mat-error
-          *ngIf="vaccineForm.get('dosage_before')?.hasError('required')"
-        >
-          Dosage Before is required
-        </mat-error>
-        <mat-error
-          *ngIf="vaccineForm.get('dosage_before')?.hasError('required')"
-        >
-          Only numbers are allowed
-        </mat-error>
-      </mat-form-field>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Dosage Before</mat-label>
+          <input matInput formControlName="dosage_before" min="0" />
+          <mat-error
+            *ngIf="vaccineForm.get('dosage_before')?.hasError('required')"
+          >
+            Dosage Before is required
+          </mat-error>
+          <mat-error
+            *ngIf="vaccineForm.get('dosage_before')?.hasError('required')"
+          >
+            Only numbers are allowed
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Dosage After</mat-label>
-        <input matInput formControlName="dosage_after" />
-        <mat-error *ngIf="vaccineForm.get('dosage_after')?.hasError('required')">
-          Dosage after is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Dosage After</mat-label>
+          <input matInput formControlName="dosage_after" />
+          <mat-error
+            *ngIf="vaccineForm.get('dosage_after')?.hasError('required')"
+          >
+            Dosage after is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Dosage Frequency</mat-label>
-        <input matInput formControlName="dosage_frequency" />
-        <mat-error
-          *ngIf="vaccineForm.get('dosage_frequency')?.hasError('required')"
-        >
-          Dosage Frequency is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Dosage Frequency</mat-label>
+          <input matInput formControlName="dosage_frequency" />
+          <mat-error
+            *ngIf="vaccineForm.get('dosage_frequency')?.hasError('required')"
+          >
+            Dosage Frequency is required
+          </mat-error>
+        </mat-form-field>
+      </div>
 
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -139,32 +150,37 @@
   <mat-step [stepControl]="vaccineForm" errorMessage="AGE GROUP  is required.">
     <form class="example-form" [formGroup]="vaccineForm">
       <ng-template matStepLabel>Target AGE GROUP</ng-template>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Age Group Name</mat-label>
+          <input matInput formControlName="age_group_name" />
+          <mat-error
+            *ngIf="vaccineForm.get('age_group_name')?.hasError('required')"
+          >
+            Age Group Name is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Age Group Name</mat-label>
-        <input matInput formControlName="age_group_name" />
-        <mat-error
-          *ngIf="vaccineForm.get('age_group_name')?.hasError('required')"
-        >
-          Age Group Name is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Minimum Age</mat-label>
+          <input matInput type="number" formControlName="minimum_age" />
+          <mat-error
+            *ngIf="vaccineForm.get('minimum_age')?.hasError('required')"
+          >
+            Minimum Age is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Minimum Age</mat-label>
-        <input matInput type="number" formControlName="minimum_age" />
-        <mat-error *ngIf="vaccineForm.get('minimum_age')?.hasError('required')">
-          Minimum Age is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Maximum Age</mat-label>
-        <input matInput type="number" formControlName="maximum_age" />
-        <mat-error *ngIf="vaccineForm.get('maximum_age')?.hasError('required')">
-          Maximum Age is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Maximum Age</mat-label>
+          <input matInput type="number" formControlName="maximum_age" />
+          <mat-error
+            *ngIf="vaccineForm.get('maximum_age')?.hasError('required')"
+          >
+            Maximum Age is required
+          </mat-error>
+        </mat-form-field>
+      </div>
 
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -179,42 +195,41 @@
   >
     <form class="example-form" [formGroup]="vaccineForm">
       <ng-template matStepLabel>Contact Information </ng-template>
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manufacture Name</mat-label>
+          <input matInput formControlName="manufacture_name" />
+          <mat-error
+            *ngIf="vaccineForm.get('manufacture_name')?.hasError('required')"
+          >
+            Manufacture Name is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Manufacture Name</mat-label>
-        <input matInput formControlName="manufacture_name" />
-        <mat-error
-          *ngIf="vaccineForm.get('manufacture_name')?.hasError('required')"
-        >
-          Manufacture Name is required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label> Established Year</mat-label>
+          <input matInput formControlName="established_year" type="number" />
 
+          <mat-error
+            *ngIf="vaccineForm.get('established_year')?.hasError('required')"
+          >
+            Established Year is required.
+          </mat-error>
 
-      <mat-form-field class="example-full-width">
-        <mat-label> Established Year</mat-label>
-        <input matInput formControlName="established_year" type="number" />
+          <mat-error
+            *ngIf="vaccineForm.get('established_year')?.hasError('pattern')"
+          >
+            Enter a valid 4-digit year (e.g., 1980, 2005).
+          </mat-error>
 
-        <mat-error
-          *ngIf="vaccineForm.get('established_year')?.hasError('required')"
-        >
-          Established Year is required.
-        </mat-error>
+          <mat-error
+            *ngIf="vaccineForm.get('established_year')?.hasError('futureYear')"
+          >
+            Established Year cannot be in the future.
+          </mat-error>
+        </mat-form-field>
 
-        <mat-error
-          *ngIf="vaccineForm.get('established_year')?.hasError('pattern')"
-        >
-          Enter a valid 4-digit year (e.g., 1980, 2005).
-        </mat-error>
-
-        <mat-error
-          *ngIf="vaccineForm.get('established_year')?.hasError('futureYear')"
-        >
-          Established Year cannot be in the future.
-        </mat-error>
-      </mat-form-field>
-
-      <!-- <mat-form-field class="example-full-width">
+        <!-- <mat-form-field class="example-full-width">
         <mat-label>Manufacture Name</mat-label>
         <input matInput formControlName="manufacture_name" />
         <mat-error
@@ -224,81 +239,85 @@
         </mat-error>
       </mat-form-field> -->
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Contact person name</mat-label>
-        <input matInput formControlName="contact_person_name" />
-        <mat-error
-          *ngIf="vaccineForm.get('contact_person_name')?.hasError('required')"
-        >
-          Contact person name is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Email :</mat-label>
-        <input
-          matInput
-          placeholder="User@gmail.com"
-          formControlName="email"
-        />
-
-        <mat-error *ngIf="vaccineForm.get('email')?.hasError('required')">
-          Email is required
-        </mat-error>
-
-        <mat-error
-          *ngIf="vaccineForm.get('email')?.hasError('invalidEmailFormat')"
-        >
-          Please enter a valid email address
-        </mat-error>
-      </mat-form-field>
-
-
-
-
-      <div class="phone-input-container">
-      <mat-form-field class="example-full-width">
-        <mat-select formControlName="countryCode">
-          <mat-option
-            *ngFor="let country of myCountryCodesObject"
-            [value]="'+' + country.countryCallingCode"
+        <mat-form-field class="example-full-width">
+          <mat-label>Contact person name</mat-label>
+          <input matInput formControlName="contact_person_name" />
+          <mat-error
+            *ngIf="vaccineForm.get('contact_person_name')?.hasError('required')"
           >
-          (+{{ country.countryCallingCode }})
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+            Contact person name is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Phone Number</mat-label>
-        <input
-          matInput
-          type="tel"
-          formControlName="phone_number"
-          maxlength="10"
-          placeholder="9876542310"
-        />
+        <mat-form-field class="example-full-width">
+          <mat-label>Email :</mat-label>
+          <input
+            matInput
+            placeholder="User@gmail.com"
+            formControlName="email"
+          />
 
-        <mat-error *ngIf="vaccineForm.get('phone_number')?.hasError('required')">
-          Phone number is required
-        </mat-error>
+          <mat-error *ngIf="vaccineForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
 
-        <mat-error
-          *ngIf="vaccineForm.get('phone_number')?.hasError('invalidCharacters')"
-        >
-          {{ vaccineForm.get("phone_number")?.getError("invalidCharacters") }}
-        </mat-error>
+          <mat-error
+            *ngIf="vaccineForm.get('email')?.hasError('invalidEmailFormat')"
+          >
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
 
-        <mat-error
-          *ngIf="vaccineForm.get('phone_number')?.hasError('invalidLength')"
-        >
-          {{ vaccineForm.get("phone_number")?.getError("invalidLength") }}
-        </mat-error>
-      </mat-form-field>
-    </div>
-   
-    
-    
-    
+        <div class="phone-input-container">
+          <mat-form-field class="example-full-width">
+            <mat-select formControlName="countryCode">
+              <mat-option
+                *ngFor="let country of myCountryCodesObject"
+                [value]="'+' + country.countryCallingCode"
+              >
+                (+{{ country.countryCallingCode }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          
+          <div class="phone-number-wrapper">
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              type="tel"
+              formControlName="phone_number"
+              maxlength="10"
+              placeholder="9876542310"
+            />
+
+            <mat-error
+              *ngIf="vaccineForm.get('phone_number')?.hasError('required')"
+            >
+              Phone number is required
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                vaccineForm.get('phone_number')?.hasError('invalidCharacters')
+              "
+            >
+              {{
+                vaccineForm.get("phone_number")?.getError("invalidCharacters")
+              }}
+            </mat-error>
+
+            <mat-error
+              *ngIf="vaccineForm.get('phone_number')?.hasError('invalidLength')"
+            >
+              {{ vaccineForm.get("phone_number")?.getError("invalidLength") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      </div>
     </form>
     <div>
       <button mat-button matStepperPrevious>Back</button>
@@ -317,55 +336,61 @@
     >
       <ng-template matStepLabel>Vaccine Details</ng-template>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" />
-        <mat-error *ngIf="vaccineForm.get('description')?.hasError('required')">
-          Description is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Dosage Instruction</mat-label>
-        <input matInput formControlName="dosage_instruction" />
-        <mat-error
-          *ngIf="vaccineForm.get('dosage_instruction')?.hasError('required')"
-        >
-          Dosage Instruction is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Side Effects</mat-label>
-        <mat-select formControlName="side_effects" multiple>
-          <mat-option value="Mild fever">Mild fever</mat-option>
-          <mat-option value="Headache">Headache</mat-option>
-          <mat-option value="Fatigue">Fatigue</mat-option>
-          <mat-option value="Muscle pain">Muscle pain</mat-option>
-          <mat-option value="Nausea">Nausea</mat-option>
-          <mat-option value="Chills">Chills</mat-option>
-          <mat-option value="Pain at injection site"
-            >Pain at injection site</mat-option
+      <div class="form-row">
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+          <mat-error
+            *ngIf="vaccineForm.get('description')?.hasError('required')"
           >
-          <mat-option value="Swelling at injection site"
-            >Swelling at injection site</mat-option
-          >
-          <mat-option value="Dizziness">Dizziness</mat-option>
-        </mat-select>
-        <mat-error *ngIf="vaccineForm.get('side_effects')?.hasError('required')">
-          At least one side effect is required
-        </mat-error>
-      </mat-form-field>
+            Description is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Contraindications</mat-label>
-        <input matInput formControlName="contraindications" />
-        <mat-error
-          *ngIf="vaccineForm.get('contraindications')?.hasError('required')"
-        >
-          Contraindications are required
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Dosage Instruction</mat-label>
+          <input matInput formControlName="dosage_instruction" />
+          <mat-error
+            *ngIf="vaccineForm.get('dosage_instruction')?.hasError('required')"
+          >
+            Dosage Instruction is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Side Effects</mat-label>
+          <mat-select formControlName="side_effects" multiple>
+            <mat-option value="Mild fever">Mild fever</mat-option>
+            <mat-option value="Headache">Headache</mat-option>
+            <mat-option value="Fatigue">Fatigue</mat-option>
+            <mat-option value="Muscle pain">Muscle pain</mat-option>
+            <mat-option value="Nausea">Nausea</mat-option>
+            <mat-option value="Chills">Chills</mat-option>
+            <mat-option value="Pain at injection site"
+              >Pain at injection site</mat-option
+            >
+            <mat-option value="Swelling at injection site"
+              >Swelling at injection site</mat-option
+            >
+            <mat-option value="Dizziness">Dizziness</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="vaccineForm.get('side_effects')?.hasError('required')"
+          >
+            At least one side effect is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraindications</mat-label>
+          <input matInput formControlName="contraindications" />
+          <mat-error
+            *ngIf="vaccineForm.get('contraindications')?.hasError('required')"
+          >
+            Contraindications are required
+          </mat-error>
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperDone>Done</button>
